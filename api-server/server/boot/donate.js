@@ -319,6 +319,9 @@ export default function donateBoot(app, done) {
   const stripeInvalid = stripeSecretInvalid || stripPublicInvalid;
 
   if (stripeInvalid || paypalInvalid || hmacKeyInvalid) {
+    if (process.env.FREECODECAMP_NODE_ENV === 'production') {
+      throw new Error('Donation API keys are required to boot the server!');
+    }
     log('Donation disabled in development unless ALL test keys are provided');
     done();
   } else {
