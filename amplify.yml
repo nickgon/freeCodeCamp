@@ -25,13 +25,7 @@ test:
   phases:
     preTest:
       commands:
-        - npm ci
-        - npm install wait-on
-        - npx pm2 start npm -- start
-        - "npx wait-on http://localhost:8000"
     test:
       commands:
-        - "npm run test"
     postTest:
       commands:
-        - npx pm2 kill
